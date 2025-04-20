@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -171,7 +170,7 @@ const CounselorModal: React.FC<CounselorModalProps> = ({ counselor, onClose }) =
                         Audio
                       </Button>
                       <Button variant="outline" className="flex items-center justify-center bg-safehaven-soft-purple">
-                        <Video className="h-4 w-4 mr-1" />
+                        <video className="h-4 w-4 mr-1" />
                         Video
                       </Button>
                       <Button variant="outline" className="flex items-center justify-center">
