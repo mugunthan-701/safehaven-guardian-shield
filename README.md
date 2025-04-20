@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
 
-## Project info
+# SafeHaven - A Digital Shield for Children and Women
 
-**URL**: https://lovable.dev/projects/479f830c-8dfa-4813-838e-d0571563e433
+SafeHaven is a web application designed to provide a comprehensive safety solution for women and children. The application offers emergency SOS alerts, legal assistance, virtual counseling, and gamified educational activities to empower users with knowledge and resources for their protection.
 
-## How can I edit this code?
+## Project URL
+https://lovable.dev/projects/479f830c-8dfa-4813-838e-d0571563e433
 
-There are several ways of editing your application.
+## Key Features
 
-**Use Lovable**
+### 1. Emergency SOS Alert
+- One-tap SOS activation
+- Location sharing with emergency contacts and nearby police
+- Continuous alarm until safety is confirmed
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/479f830c-8dfa-4813-838e-d0571563e433) and start prompting.
+### 2. User Authentication
+- Secure signup/login system
+- User type selection (woman/child) for personalized experience
 
-Changes made via Lovable will be committed automatically to this repo.
+### 3. Legal Assistance Chatbot
+- Multilingual support
+- Information on laws protecting women and children
+- Voice input option for accessibility
 
-**Use your preferred IDE**
+### 4. Virtual Counseling
+- Connect with professional counselors
+- Book sessions through audio, video, or chat
+- Profile information and availability management
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 5. Gamified Safety Activities
+- **Safety Quest**: Scenario-based decision making
+- **Brain Booster Quiz**: Test knowledge on safety, rights, and legal protection
+- **Self-Defense Moves**: Learn basic self-defense techniques
+- **Voice Challenge**: Practice emergency voice commands
+- **Know Your Rights**: Memory game for rights awareness
+- **Map Hunt**: Navigation practice to escape unsafe zones
+- **Roleplay Adventure**: Understanding different perspectives in emergencies
+- **Relaxation Zone**: Reduce stress through relaxation activities
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Technical Implementation
 
-Follow these steps:
+- **Frontend**: React with TypeScript
+- **Styling**: Tailwind CSS with custom SafeHaven color palette
+- **UI Components**: shadcn/ui library
+- **Routing**: React Router for navigation
+- **State Management**: React Context API for user authentication, location tracking, and SOS alerts
+- **Notifications**: Toast messages for important alerts
+- **Responsive Design**: Mobile-first approach for all screens
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Getting Started
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Start the development server with `npm run dev`
+4. Open a browser and navigate to `http://localhost:8080`
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Using the Application
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. **Sign up/login** to create an account
+2. Select your **user type** (woman or child)
+3. Navigate through the application using the top navigation bar
+4. Access the **SOS button** from any screen in case of emergency
+5. Explore the **legal assistance** chatbot for information on rights and legal protection
+6. Book virtual counseling sessions with professionals
+7. Participate in gamified activities to learn safety skills
 
-**Edit a file directly in GitHub**
+## Note on AI Chatbot
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/479f830c-8dfa-4813-838e-d0571563e433) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The legal assistance chatbot currently uses mock AI responses for demonstration purposes. In a production environment, this would be connected to a proper AI API like OpenAI's GPT or a similar service to provide accurate legal information.
