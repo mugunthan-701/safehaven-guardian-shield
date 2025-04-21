@@ -1,19 +1,22 @@
-
+// src/components/Layout/Navigation.tsx
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
-import { useAuth } from '@/context/AuthContext';
-import { Bell, Book, Home, LogOut, Menu, MessageCircle, PhoneCall, ShieldCheck, User } from 'lucide-react';
+import { Bell, Book, Home, LogOut, Menu, MessageCircle, PhoneCall, ShieldCheck } from 'lucide-react';
 import SOSButton from '../SOS/SOSButton';
 
 const Navigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  // Only hide navigation on auth and user-type pages
+  if (location.pathname === '/' || location.pathname === '/user-type') {
+    return null;
+  }
+
   const navItems = [
     { 
       icon: <Home className="h-5 w-5" />, 
@@ -37,7 +40,7 @@ const Navigation: React.FC = () => {
       icon: <Book className="h-5 w-5" />, 
       label: 'Activities', 
       path: '/games',
-      active: location.pathname === '/games' || location.pathname.startsWith('/games/')
+      active: location.pathname === '/games'
     },
     { 
       icon: <Bell className="h-5 w-5" />, 
@@ -46,15 +49,25 @@ const Navigation: React.FC = () => {
       active: location.pathname === '/notifications'
     },
   ];
-  
+
   const handleNavigation = (path: string) => {
-    navigate(path);
+    const userType = localStorage.getItem('userType');
+    if (!userType) {
+      navigate('/user-type', { replace: true });
+      return;
+    }
+    navigate(path, { replace: true });
     setIsOpen(false);
   };
-  
+
   const handleLogout = () => {
-    logout();
-    navigate('/');
+    const userEmail = localStorage.getItem('userEmail');
+    document.cookie = `emergencyContacts_${userEmail}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+
+    localStorage.removeItem('userType');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
+    navigate('/', { replace: true });
   };
 
   return (

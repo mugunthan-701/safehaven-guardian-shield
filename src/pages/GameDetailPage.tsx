@@ -8,24 +8,16 @@ import SOSPanel from '@/components/SOS/SOSPanel';
 import { useSOSAlert } from '@/context/SOSContext';
 
 const GameDetailPage: React.FC = () => {
-  const { isAuthenticated, userType } = useAuth();
   const { isSOSActive } = useSOSAlert();
   const navigate = useNavigate();
   const { gameId } = useParams<{ gameId: string }>();
 
   useEffect(() => {
-    // Redirect to login if not authenticated
-    if (!isAuthenticated) {
-      navigate('/');
-      return;
-    }
-    
-    // Redirect to user type selection if no user type
+    const userType = localStorage.getItem('userType');
     if (!userType) {
-      navigate('/user-type');
-      return;
+      navigate('/user-type', { replace: true });
     }
-  }, [isAuthenticated, userType, navigate]);
+  }, [navigate]);
 
   // Render appropriate game component based on gameId
   const renderGame = () => {
@@ -55,7 +47,6 @@ const GameDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Navigation />
       
       {isSOSActive && <SOSPanel />}
       

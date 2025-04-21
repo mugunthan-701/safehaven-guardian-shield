@@ -1,37 +1,34 @@
-
 import React, { useState } from 'react';
-import { useAuth } from '@/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { toast } from '@/components/ui/sonner';
 import { Shield } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface LoginFormProps {
   onSwitchToRegister: () => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
-  const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!email || !password) {
-      toast.error('Please fill in all fields');
-      return;
-    }
-    
-    try {
-      setIsLoading(true);
-      await login(email, password);
-    } catch (error) {
-      console.error('Login error:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    // Check if user type exists
+    const userData = {
+      email,
+      password,
+      isAuthenticated: true
+    };
+
+    // Store in localStorage
+    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('isAuthenticated', 'true');
+
+    toast.success('Logged in successfully!');
+    navigate('/user-type', { replace: true });
   };
 
   return (
@@ -74,9 +71,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
         <Button 
           type="submit" 
           className="safehaven-btn safehaven-btn-primary w-full"
-          disabled={isLoading}
         >
-          {isLoading ? 'Logging in...' : 'Login'}
+          Login
         </Button>
       </form>
       

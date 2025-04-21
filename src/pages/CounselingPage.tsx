@@ -8,27 +8,19 @@ import SOSPanel from '@/components/SOS/SOSPanel';
 import { useSOSAlert } from '@/context/SOSContext';
 
 const CounselingPage: React.FC = () => {
-  const { isAuthenticated, userType } = useAuth();
   const { isSOSActive } = useSOSAlert();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Redirect to login if not authenticated
-    if (!isAuthenticated) {
-      navigate('/');
-      return;
-    }
-    
-    // Redirect to user type selection if no user type
-    if (!userType) {
-      navigate('/user-type');
-      return;
-    }
-  }, [isAuthenticated, userType, navigate]);
+  // For both GamesPage.tsx and CounselingPage.tsx, replace the useEffect with:
+useEffect(() => {
+  const userType = localStorage.getItem('userType');
+  if (!userType) {
+    navigate('/user-type', { replace: true });
+  }
+}, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Navigation />
+    <div className="min-h-screen bg-gray-50 flex flex-col">   
       
       {isSOSActive && <SOSPanel />}
       
